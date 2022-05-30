@@ -1,4 +1,4 @@
-package com.youkongyi.mall.dto;
+package com.youkongyi.mall.common.util;
 
 
 /**

@@ -5,9 +5,31 @@ spring:
     url: jdbc:mysql://192.168.0.184:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: root
+  redis:
+    host: 192.168.0.198
+    port: 6379
+    database: 0
+    password: e593813e7d4c729da37e5e41fe760b0e
+    timeout: 4500ms
+    lettuce:
+      pool:
+        max-active: 8  #连接池最大连接数
+        max-wait: -1ms #连接池最大阻塞等待时间
+        max-idle: 5    #连接池中的最大空闲连接
+        min-idle: 0    #连接池中的最小空闲连接
 management:
   endpoints:
     web:
       base-path: /actuator
       exposure:
         include: "*"
+springdoc:
+  api-docs:
+    enabled: true
+    groups:
+      enabled: true
+logging:
+  level:
+    org:
+      springframework:
+        web: info

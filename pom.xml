@@ -22,11 +22,15 @@
         <!-- 分页工具 -->
         <pagehelper.spring.version>1.4.2</pagehelper.spring.version>
         <!-- 数据库连接池 -->
-        <druid.spring.version>1.2.9</druid.spring.version>
+        <druid.spring.version>1.2.11</druid.spring.version>
         <!-- 工具类 -->
-        <hutool.version>5.8.2</hutool.version>
+        <hutool.version>5.8.3</hutool.version>
         <!-- JSON对象转换解析 -->
         <gson.version>2.9.0</gson.version>
+        <!-- 在线文档 -->
+        <springdoc.version>1.6.9</springdoc.version>
+        <!-- 在线文档UI可视化 -->
+        <knife4j.version>3.0.3</knife4j.version>
     </properties>
 
     <dependencies>
@@ -51,6 +55,11 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
+        </dependency>
+        <!--redis依赖配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <!-- mysql驱动 -->
         <dependency>
@@ -99,6 +108,18 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${gson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-springdoc-ui</artifactId>
+            <version>${knife4j.version}</version>
         </dependency>
 
         <dependency>

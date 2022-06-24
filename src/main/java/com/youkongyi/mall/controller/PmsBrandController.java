@@ -1,20 +1,31 @@
 package com.youkongyi.mall.controller;
 
-import cn.hutool.core.util.StrUtil;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.github.pagehelper.PageInfo;
 import com.youkongyi.mall.common.emum.ResultCode;
 import com.youkongyi.mall.common.util.ReturnDTO;
 import com.youkongyi.mall.model.PmsBrand;
 import com.youkongyi.mall.service.IPmsBrandService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import cn.hutool.core.util.StrUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequestMapping("/brand")
+@Tag(name = "PmsBrandController",description = "商品品牌管理")
 public class PmsBrandController {
 
     private final IPmsBrandService pmsBrandService;
@@ -31,6 +42,7 @@ public class PmsBrandController {
       * @author： Aimer
       * @crateDate： 2022/05/30 14:11
       */
+    @Operation(summary = "1001_分页获取品牌信息", description = "获取所有品牌列表")
     @GetMapping("/page")
     public ReturnDTO<PageInfo<PmsBrand>> getBrandForPage(@RequestParam Map<String,String> reqMap) {
         ReturnDTO<PageInfo<PmsBrand>> returnDTO = new ReturnDTO<>();

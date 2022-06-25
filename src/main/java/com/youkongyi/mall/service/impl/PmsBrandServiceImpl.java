@@ -1,15 +1,15 @@
 package com.youkongyi.mall.service.impl;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.youkongyi.mall.common.emum.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.youkongyi.mall.common.emum.ResultCode;
+import com.youkongyi.mall.common.util.PagerResult;
 import com.youkongyi.mall.common.util.ReturnDTO;
 import com.youkongyi.mall.mapper.PmsBrandMapper;
 import com.youkongyi.mall.model.PmsBrand;
@@ -29,17 +29,16 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
     }
 
     @Override
-    public ReturnDTO<PageInfo<PmsBrand>> getBrandForPage(Map<String,String> reqMap) {
-        ReturnDTO<PageInfo<PmsBrand>> returnDTO = new ReturnDTO<>();
+    public PagerResult<PmsBrand> getBrandForPage(Map<String,String> reqMap) {
+        PagerResult<PmsBrand> returnDTO = new PagerResult<>();
         JSONObject obj = JSONUtil.parseObj(reqMap);
         PmsBrand entity = obj.toBean(PmsBrand.class);
         int pageNo = obj.getInt("pageNo", 1);
         int pageSize = obj.getInt("pageSize", 10);
-        PageHelper.startPage(pageNo, pageSize);
-        List<PmsBrand> list = pmsBrandMapper.selectList(entity);
+        PageInfo<PmsBrand> pageInfo = PageHelper.startPage(pageNo, pageSize).doSelectPageInfo(() -> pmsBrandMapper.selectList(entity));
         returnDTO.setCode(ResultCode.SUCCESS.getCode());
         returnDTO.setMsg(ResultCode.SUCCESS.getMessage());
-        returnDTO.setData(PageInfo.of(list));
+        returnDTO.setRows(pageInfo.getList());
         return returnDTO;
     }
 

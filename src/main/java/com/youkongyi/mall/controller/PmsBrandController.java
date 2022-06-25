@@ -11,14 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.youkongyi.mall.common.emum.ResultCode;
+import com.youkongyi.mall.common.util.PagerResult;
 import com.youkongyi.mall.common.util.ReturnDTO;
 import com.youkongyi.mall.model.PmsBrand;
 import com.youkongyi.mall.service.IPmsBrandService;
 
 import cn.hutool.core.util.StrUtil;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,10 +44,17 @@ public class PmsBrandController {
       * @author： Aimer
       * @crateDate： 2022/05/30 14:11
       */
-    @Operation(summary = "1001_分页获取品牌信息", description = "获取所有品牌列表")
+    @Operation(
+            summary = "1001_分页获取品牌信息",
+            description = "分页获取品牌信息",
+            parameters = {
+                    @Parameter(name = "reqMap", description = "入参", hidden = true),
+                    @Parameter(schema = @Schema(implementation = PmsBrand.class))
+            }
+    )
     @GetMapping("/page")
-    public ReturnDTO<PageInfo<PmsBrand>> getBrandForPage(@RequestParam Map<String,String> reqMap) {
-        ReturnDTO<PageInfo<PmsBrand>> returnDTO = new ReturnDTO<>();
+    public PagerResult<PmsBrand> getBrandForPage(@RequestParam Map<String,String> reqMap) {
+        PagerResult<PmsBrand> returnDTO = new PagerResult<>();
         try {
             return pmsBrandService.getBrandForPage(reqMap);
         } catch (Exception e) {
@@ -63,6 +72,7 @@ public class PmsBrandController {
       * @author： Aimer
       * @crateDate： 2022/05/30 16:09
       */
+    @Operation(summary = "1002_保存品牌信息", description = "保存品牌信息")
     @PostMapping("/save")
     public ReturnDTO<Boolean> createBrand(@RequestBody PmsBrand brand){
         ReturnDTO<Boolean> returnDTO = new ReturnDTO<>();
@@ -84,6 +94,7 @@ public class PmsBrandController {
       * @author： Aimer
       * @crateDate： 2022/05/30 16:12
       */
+    @Operation(summary = "1003_依据主键编码更新品牌信息", description = "依据主键编码更新品牌信息")
     @PostMapping("/update")
     public ReturnDTO<Boolean> updateBrand(@RequestBody PmsBrand brand){
         ReturnDTO<Boolean> returnDTO = new ReturnDTO<>();
@@ -110,7 +121,8 @@ public class PmsBrandController {
       * @author： Aimer
       * @crateDate： 2022/05/30 16:13
       */
-    @GetMapping("/delete/{id}")
+    @Operation(summary = "1004_依据主键编码删除品牌信息", description = "依据主键编码删除品牌信息")
+    @PostMapping("/delete/{id}")
     public ReturnDTO<Boolean> deleteBrand(@PathVariable("id") Long id) {
         ReturnDTO<Boolean> returnDTO = new ReturnDTO<>();
         try {
@@ -131,6 +143,7 @@ public class PmsBrandController {
       * @author： Aimer
       * @crateDate： 2022/05/30 15:34
       */
+    @Operation(summary = "1005_依据主键编码获取指定品牌信息详情", description = "依据主键编码获取指定品牌信息详情")
     @GetMapping("/find/{id}")
     public ReturnDTO<PmsBrand> getBrand(@PathVariable("id") Long id) {
         ReturnDTO<PmsBrand> returnDTO = new ReturnDTO<>();
@@ -143,6 +156,4 @@ public class PmsBrandController {
         }
         return returnDTO;
     }
-
-
 }

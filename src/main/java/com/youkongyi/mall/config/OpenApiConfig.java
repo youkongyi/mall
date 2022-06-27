@@ -1,4 +1,4 @@
-package com.youkongyi.mall.component;
+package com.youkongyi.mall.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -36,7 +36,9 @@ public class OpenApiConfig {
 
     @Bean
     public GroupedOpenApi openApi() {
-        return GroupedOpenApi.builder().group("brand").pathsToMatch("/brand/**")
+        return GroupedOpenApi.builder()
+                .group("brand")
+                .packagesToScan("com.youkongyi.mall.controller")
                 .build();
     }
 }

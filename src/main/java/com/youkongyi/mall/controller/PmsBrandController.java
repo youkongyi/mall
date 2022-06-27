@@ -84,7 +84,7 @@ public class PmsBrandController {
         } catch (Exception e) {
             log.error("获取品牌信息集合异常: ", e);
             returnDTO.setCode(ResultCode.FAILED.getCode());
-            returnDTO.setMsg("获取品牌信息集合异常!");
+            returnDTO.setMsg(ResultCode.FAILED.getMessage());
         }
         return returnDTO;
     }
@@ -118,7 +118,7 @@ public class PmsBrandController {
         } catch (Exception e) {
             log.error("保存品牌信息异常: ", e);
             returnDTO.setCode(ResultCode.FAILED.getCode());
-            returnDTO.setMsg("保存品牌信息异常!");
+            returnDTO.setMsg(ResultCode.FAILED.getMessage());
         }
         return returnDTO;
     }
@@ -158,7 +158,7 @@ public class PmsBrandController {
         } catch (Exception e) {
             log.error("更新品牌信息异常: ", e);
             returnDTO.setCode(ResultCode.FAILED.getCode());
-            returnDTO.setMsg("更新品牌信息异常!");
+            returnDTO.setMsg(ResultCode.FAILED.getMessage());
         }
         return returnDTO;
     }
@@ -194,7 +194,7 @@ public class PmsBrandController {
         } catch (Exception e){
             log.error("删除品牌信息异常: ", e);
             returnDTO.setCode(ResultCode.FAILED.getCode());
-            returnDTO.setMsg("删除品牌信息异常!");
+            returnDTO.setMsg(ResultCode.FAILED.getMessage());
         }
         return returnDTO;
     }
@@ -230,7 +230,7 @@ public class PmsBrandController {
         } catch (Exception e){
             log.error("获取品牌信息异常: ", e);
             returnDTO.setCode(ResultCode.FAILED.getCode());
-            returnDTO.setMsg("获取品牌信息异常!");
+            returnDTO.setMsg(ResultCode.FAILED.getMessage());
         }
         return returnDTO;
     }

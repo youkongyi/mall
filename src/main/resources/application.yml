@@ -34,3 +34,8 @@ springdoc:
     enabled: true
     groups:
       enabled: true
+#Redis自定义key
+redis:
+  key:
+    prefix:
+      auth-code: "portal:authCode:"

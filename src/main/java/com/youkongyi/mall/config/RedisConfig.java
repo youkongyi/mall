@@ -24,19 +24,18 @@ public class RedisConfig {
         //先改成<String, Object>类型
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
-
         //Json序列化配置
         //1、json解析任意的对象（Object）,变成json序列化
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         //用ObjectMapper进行转义
         ObjectMapper om = new ObjectMapper();
+        // 设置任何字段可见
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         //该方法是指定序列化输入的类型，就是将数据库里的数据按照一定类型存储到redis缓存中。
 //        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL,JsonTypeInfo.As.PROPERTY);
         jackson2JsonRedisSerializer.setObjectMapper(om);
         //2、String的序列化
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-
         // key采用String的序列化方式
         template.setKeySerializer(stringRedisSerializer);
         // hash的key也采用String的序列化方式
@@ -45,8 +44,8 @@ public class RedisConfig {
         template.setValueSerializer(jackson2JsonRedisSerializer);
         // hash的value序列化方式采用jackson
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        // 执行初始化
         template.afterPropertiesSet();
-
         return template;
     }
 

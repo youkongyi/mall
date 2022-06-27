@@ -1,10 +1,14 @@
 server:
   port: 80
 spring:
+  profiles:
+    active: dev #部署环境 prod:生产环境(不打印sql) dev:开发环境(打印sql)
+  #数据源
   datasource:
     url: jdbc:mysql://192.168.2.88:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: root
+  #缓存
   redis:
     host: 192.168.2.88
     port: 6379
@@ -17,19 +21,16 @@ spring:
         max-wait: -1ms #连接池最大阻塞等待时间
         max-idle: 5    #连接池中的最大空闲连接
         min-idle: 0    #连接池中的最小空闲连接
+#系统监控
 management:
   endpoints:
     web:
       base-path: /actuator
       exposure:
         include: "*"
+#API在线文档
 springdoc:
   api-docs:
     enabled: true
     groups:
       enabled: true
-logging:
-  level:
-    org:
-      springframework:
-        web: info

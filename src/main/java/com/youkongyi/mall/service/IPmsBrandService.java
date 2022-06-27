@@ -1,14 +1,13 @@
 package com.youkongyi.mall.service;
 
+import com.youkongyi.mall.common.util.Pager;
 import com.youkongyi.mall.common.util.PagerResult;
 import com.youkongyi.mall.common.util.ReturnDTO;
 import com.youkongyi.mall.model.PmsBrand;
 
-import java.util.Map;
-
 public interface IPmsBrandService {
 
-    PagerResult<PmsBrand> getBrandForPage(Map<String,String> reqMap);
+    PagerResult<PmsBrand> getBrandForPage(PmsBrand brand, Pager pager);
 
     ReturnDTO<Boolean> createBrand(PmsBrand brand);
 

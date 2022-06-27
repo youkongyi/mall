@@ -13,9 +13,9 @@ public enum ResultCode {
     UNAUTHORIZED(401, "暂未登录或token已经过期"),
     FORBIDDEN(403, "没有相关权限");
 
-    private int code;
+    private final int code;
 
-    private String message;
+    private final String message;
 
     ResultCode(int code, String message) {
         this.code = code;

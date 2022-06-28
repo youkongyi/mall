@@ -39,3 +39,9 @@ redis:
   key:
     prefix:
       auth-code: "portal:authCode:"
+#JWT设置
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mall-secret #JWT加解密使用的密钥
+  expiration: 604800000  #JWT的超期限时间(毫秒)
+  tokenHead: 'Bearer ' #JWT负载中拿到开头

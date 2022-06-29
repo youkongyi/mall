@@ -54,23 +54,23 @@ ___
 > OpenApi3学习笔记
 >> 1. @OpenAPIDefinition 类的文档说明
 >>
->>   @Info 详情信息
+>> @Info 详情信息
 >>
->>   @Contact 联系信息
+>> @Contact 联系信息
 >>
->>   @License 许可证信息
+>> @License 许可证信息
 >>
->>   @Server 远程调用信息
->> 2. @Tag 类、方法标签信息
+>> @Server 远程调用信息
+>>2. @Tag 类、方法标签信息
 >>
->>   @Operation 方法描述信息
+>> @Operation 方法描述信息
 >>
->>   @Parameter 方法、参数的定义信息
+>> @Parameter 方法、参数的定义信息
 >>
->>   @ApiResponse 方法声明的响应信息
+>> @ApiResponse 方法声明的响应信息
 >> 3. @Content 定义参数、请求或响应的内容描述信息
 >>
->>   @Schema 定义参数、模型的概要信息
+>> @Schema 定义参数、模型的概要信息
 >
 >2022-06-28
 >

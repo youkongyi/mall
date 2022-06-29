@@ -21,6 +21,10 @@ spring:
         max-wait: -1ms #连接池最大阻塞等待时间
         max-idle: 5    #连接池中的最大空闲连接
         min-idle: 0    #连接池中的最小空闲连接
+#mybatis配置信息
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
 #系统监控
 management:
   endpoints:
@@ -31,7 +35,6 @@ management:
 #API在线文档
 springdoc:
   api-docs:
-    enabled: true
     groups:
       enabled: true
 #Redis自定义key
@@ -42,6 +45,6 @@ redis:
 #JWT设置
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
-  secret: mall-secret #JWT加解密使用的密钥
+  secret: youkongyi-mall-secret #JWT加解密使用的密钥
   expiration: 604800000  #JWT的超期限时间(毫秒)
   tokenHead: 'Bearer ' #JWT负载中拿到开头

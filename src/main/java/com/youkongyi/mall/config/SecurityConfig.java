@@ -1,5 +1,7 @@
 package com.youkongyi.mall.config;
 
+import com.youkongyi.mall.component.RestAuthenticationEntryPoint;
+import com.youkongyi.mall.component.RestfulAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +15,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.youkongyi.mall.component.JwtAuthenticationTokenFilter;
 import com.youkongyi.mall.dto.AdminUserDetails;
 import com.youkongyi.mall.service.IUmsAdminService;
 
@@ -43,12 +47,12 @@ public class SecurityConfig {
     }
 
     /**
-      * @description： 认证管理器
+      * @description： 获取AuthenticationManager(认证管理器),登录时认证使用
       *     com.youkongyi.mall.config.SecurityConfig.authenticationManager
       * @param： authenticationConfiguration (org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration)
       * @return： org.springframework.security.authentication.AuthenticationManager
       * @author： Aimer
-      * @crateDate： 2022/06/28 14:35
+      * @crateDate： 2022/06/29 15:33
       */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -68,11 +72,65 @@ public class SecurityConfig {
         return http.csrf().disable()//关闭csrf
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//关闭session
                 .and()
-                .authorizeRequests(auth ->
-                        auth.antMatchers("/**").permitAll()
-                                .anyRequest().authenticated()
+                .authorizeHttpRequests(auth ->
+                        auth.mvcMatchers("/resources/**",
+                                        "/webjars/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-resources/**",
+                                        "/v3/api-docs/**",
+                                        "/v2/api-docs/**",
+                                        "/*.ico",
+                                        "/*.html",
+                                        "/admin/login")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()
                 )
-                .userDetailsService(userDetailsService()).build();
+                // 添加 JWT 过滤器，JWT 过滤器在用户名密码认证过滤器之前
+                .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+                .userDetailsService(userDetailsService())
+                .exceptionHandling()// 自定义异常处理
+                .accessDeniedHandler(restfulAccessDeniedHandler())// 访问被拒绝异常
+                .authenticationEntryPoint(restAuthenticationEntryPoint())// 身份验证方案
+                .and()
+                .build();
+    }
+
+    /**
+      * @description： 没有权限异常
+      *     com.youkongyi.mall.config.SecurityConfig.restfulAccessDeniedHandler
+      * @return： com.youkongyi.mall.component.RestfulAccessDeniedHandler
+      * @author： Aimer
+      * @crateDate： 2022/06/29 16:26
+      */
+    @Bean
+    public RestfulAccessDeniedHandler restfulAccessDeniedHandler(){
+        return new RestfulAccessDeniedHandler();
+    }
+
+    /**
+      * @description： 未登录异常
+      *     com.youkongyi.mall.config.SecurityConfig.restAuthenticationEntryPoint
+      * @return： com.youkongyi.mall.component.RestAuthenticationEntryPoint
+      * @author： Aimer
+      * @crateDate： 2022/06/29 16:26
+      */
+    @Bean
+    public RestAuthenticationEntryPoint restAuthenticationEntryPoint(){
+        return new RestAuthenticationEntryPoint();
+    }
+
+    /**
+      * @description： 在用户名和密码校验前添加的过滤器，如果有jwt的token，会自行根据token信息进行登录。
+      *     com.youkongyi.mall.config.SecurityConfig.jwtAuthenticationTokenFilter
+
+      * @return： JwtAuthenticationTokenFilter
+      * @author： Aimer
+      * @crateDate： 2022/06/29 15:37
+      */
+    @Bean
+    public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter(){
+        return new JwtAuthenticationTokenFilter();
     }
 
     /**

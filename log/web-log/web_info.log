@@ -1,0 +1,125 @@
+2022-06-29 17:01:07.009 [main] INFO  com.youkongyi.mall.MallApplication - Starting MallApplication using Java 1.8.0_301 on DESKTOP-TIO3AC4 with PID 11256 (E:\IdeaProjects\mall\target\classes started by Aimer in E:\IdeaProjects\mall)
+2022-06-29 17:01:07.010 [main] INFO  com.youkongyi.mall.MallApplication - The following 1 profile is active: "dev"
+2022-06-29 17:01:07.066 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-29 17:01:07.067 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-29 17:01:08.325 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2022-06-29 17:01:08.328 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-06-29 17:01:08.366 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 0 Redis repository interfaces.
+2022-06-29 17:01:09.300 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+2022-06-29 17:01:09.312 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+2022-06-29 17:01:09.313 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-29 17:01:09.314 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-06-29 17:01:09.428 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-29 17:01:09.428 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2361 ms
+2022-06-29 17:01:09.509 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-29 17:01:09.638 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-29 17:01:11.159 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 13 endpoint(s) beneath base path '/actuator'
+2022-06-29 17:01:11.196 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@70ccb3bf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@10ffe32f, org.springframework.security.web.context.SecurityContextPersistenceFilter@28551755, org.springframework.security.web.header.HeaderWriterFilter@26f07261, org.springframework.security.web.authentication.logout.LogoutFilter@242c4a94, com.youkongyi.mall.component.JwtAuthenticationTokenFilter@44de3b46, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7ec68821, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2bfa5678, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@13868c41, org.springframework.security.web.session.SessionManagementFilter@1f7b8d59, org.springframework.security.web.access.ExceptionTranslationFilter@7e1953f7, org.springframework.security.web.access.intercept.AuthorizationFilter@5408fca1]
+2022-06-29 17:01:11.555 [main] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2022-06-29 17:01:11.576 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+2022-06-29 17:01:11.596 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+2022-06-29 17:01:11.611 [main] INFO  com.youkongyi.mall.MallApplication - Started MallApplication in 5.255 seconds (JVM running for 7.069)
+2022-06-29 17:01:25.751 [http-nio-80-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-29 17:01:25.751 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-29 17:01:25.752 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2022-06-29 17:01:26.456 [http-nio-80-exec-4] INFO  org.springdoc.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 233 ms
+2022-06-29 17:05:38.947 [main] INFO  com.youkongyi.mall.MallApplication - Starting MallApplication using Java 1.8.0_301 on DESKTOP-TIO3AC4 with PID 5176 (E:\IdeaProjects\mall\target\classes started by Aimer in E:\IdeaProjects\mall)
+2022-06-29 17:05:38.948 [main] INFO  com.youkongyi.mall.MallApplication - The following 1 profile is active: "dev"
+2022-06-29 17:05:38.997 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-29 17:05:38.998 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-29 17:05:39.892 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2022-06-29 17:05:39.894 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-06-29 17:05:39.923 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2022-06-29 17:05:40.749 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+2022-06-29 17:05:40.760 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+2022-06-29 17:05:40.761 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-29 17:05:40.761 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-06-29 17:05:40.863 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-29 17:05:40.863 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1865 ms
+2022-06-29 17:05:40.936 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-29 17:05:41.076 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-29 17:05:42.597 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 13 endpoint(s) beneath base path '/actuator'
+2022-06-29 17:05:42.634 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@724e0a77, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@762db992, org.springframework.security.web.context.SecurityContextPersistenceFilter@16279a5d, org.springframework.security.web.header.HeaderWriterFilter@75d9b73c, org.springframework.security.web.authentication.logout.LogoutFilter@3cc548f6, com.youkongyi.mall.component.JwtAuthenticationTokenFilter@7526bb18, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1f7949dc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4b2af0eb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@15a591d9, org.springframework.security.web.session.SessionManagementFilter@54c17a2b, org.springframework.security.web.access.ExceptionTranslationFilter@2433bcd4, org.springframework.security.web.access.intercept.AuthorizationFilter@235dacd7]
+2022-06-29 17:05:42.998 [main] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2022-06-29 17:05:43.019 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+2022-06-29 17:05:43.040 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+2022-06-29 17:05:43.054 [main] INFO  com.youkongyi.mall.MallApplication - Started MallApplication in 4.716 seconds (JVM running for 6.5)
+2022-06-29 17:05:48.395 [http-nio-80-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-29 17:05:48.395 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-29 17:05:48.397 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2022-06-29 17:09:30.143 [http-nio-80-exec-3] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-06-29 17:09:30.150 [http-nio-80-exec-3] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2022-06-29 17:13:55.474 [main] INFO  com.youkongyi.mall.MallApplication - Starting MallApplication using Java 1.8.0_301 on DESKTOP-TIO3AC4 with PID 17528 (E:\IdeaProjects\mall\target\classes started by Aimer in E:\IdeaProjects\mall)
+2022-06-29 17:13:55.476 [main] INFO  com.youkongyi.mall.MallApplication - The following 1 profile is active: "dev"
+2022-06-29 17:13:55.536 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-29 17:13:55.536 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-29 17:13:56.581 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2022-06-29 17:13:56.583 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-06-29 17:13:56.615 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2022-06-29 17:13:57.449 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+2022-06-29 17:13:57.464 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+2022-06-29 17:13:57.465 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-29 17:13:57.465 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-06-29 17:13:57.601 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-29 17:13:57.601 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2064 ms
+2022-06-29 17:13:57.684 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-29 17:13:57.826 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-29 17:13:59.367 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 13 endpoint(s) beneath base path '/actuator'
+2022-06-29 17:13:59.404 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7205a8b7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1ee126de, org.springframework.security.web.context.SecurityContextPersistenceFilter@1a99744a, org.springframework.security.web.header.HeaderWriterFilter@38e88e13, org.springframework.security.web.authentication.logout.LogoutFilter@33997e07, com.youkongyi.mall.component.JwtAuthenticationTokenFilter@7fc56d61, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@32084a01, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5f1a3c4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@22cce199, org.springframework.security.web.session.SessionManagementFilter@55a2f08b, org.springframework.security.web.access.ExceptionTranslationFilter@6c6c93f8, org.springframework.security.web.access.intercept.AuthorizationFilter@71c69628]
+2022-06-29 17:13:59.759 [main] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2022-06-29 17:13:59.780 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+2022-06-29 17:13:59.800 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+2022-06-29 17:13:59.813 [main] INFO  com.youkongyi.mall.MallApplication - Started MallApplication in 5.015 seconds (JVM running for 6.815)
+2022-06-29 17:14:02.362 [http-nio-80-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-29 17:14:02.363 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-29 17:14:02.364 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2022-06-29 17:16:13.261 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-06-29 17:16:13.265 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-06-29 17:16:38.167 [main] INFO  com.youkongyi.mall.MallApplication - Starting MallApplication using Java 1.8.0_301 on DESKTOP-TIO3AC4 with PID 19540 (E:\IdeaProjects\mall\target\classes started by Aimer in E:\IdeaProjects\mall)
+2022-06-29 17:16:38.169 [main] INFO  com.youkongyi.mall.MallApplication - The following 1 profile is active: "dev"
+2022-06-29 17:16:38.217 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-29 17:16:38.217 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-29 17:16:39.127 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2022-06-29 17:16:39.129 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-06-29 17:16:39.162 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2022-06-29 17:16:40.028 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+2022-06-29 17:16:40.038 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+2022-06-29 17:16:40.038 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-29 17:16:40.038 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-06-29 17:16:40.134 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-29 17:16:40.134 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1917 ms
+2022-06-29 17:16:40.207 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-29 17:16:40.332 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-29 17:16:41.944 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 13 endpoint(s) beneath base path '/actuator'
+2022-06-29 17:16:41.984 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7a1878d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b625e82, org.springframework.security.web.context.SecurityContextPersistenceFilter@3eb8057c, org.springframework.security.web.header.HeaderWriterFilter@3af6c672, org.springframework.security.web.authentication.logout.LogoutFilter@260f05ee, com.youkongyi.mall.component.JwtAuthenticationTokenFilter@4aa517c3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@be186df, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f9b5f01, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@22657db1, org.springframework.security.web.session.SessionManagementFilter@39007725, org.springframework.security.web.access.ExceptionTranslationFilter@38318d67, org.springframework.security.web.access.intercept.AuthorizationFilter@7f9b851c]
+2022-06-29 17:16:42.423 [main] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2022-06-29 17:16:42.452 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+2022-06-29 17:16:42.475 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+2022-06-29 17:16:42.491 [main] INFO  com.youkongyi.mall.MallApplication - Started MallApplication in 4.932 seconds (JVM running for 6.71)
+2022-06-29 17:16:43.562 [http-nio-80-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-29 17:16:43.562 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-29 17:16:43.563 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2022-06-29 17:21:29.794 [main] INFO  com.youkongyi.mall.MallApplication - Starting MallApplication using Java 1.8.0_301 on DESKTOP-TIO3AC4 with PID 6468 (E:\IdeaProjects\mall\target\classes started by Aimer in E:\IdeaProjects\mall)
+2022-06-29 17:21:29.795 [main] INFO  com.youkongyi.mall.MallApplication - The following 1 profile is active: "dev"
+2022-06-29 17:21:29.844 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-29 17:21:29.845 [main] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-29 17:21:30.740 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2022-06-29 17:21:30.743 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-06-29 17:21:30.772 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2022-06-29 17:21:31.569 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+2022-06-29 17:21:31.579 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+2022-06-29 17:21:31.580 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-29 17:21:31.580 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-06-29 17:21:31.676 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-29 17:21:31.676 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1831 ms
+2022-06-29 17:21:31.743 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-29 17:21:31.877 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-29 17:21:33.305 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 13 endpoint(s) beneath base path '/actuator'
+2022-06-29 17:21:33.340 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@55cf5626, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8de8b07, org.springframework.security.web.context.SecurityContextPersistenceFilter@55731ccd, org.springframework.security.web.header.HeaderWriterFilter@50fe5df2, org.springframework.security.web.authentication.logout.LogoutFilter@507fecf3, com.youkongyi.mall.component.JwtAuthenticationTokenFilter@4cd90c36, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@750adad8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@752fecbf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b55f0a6, org.springframework.security.web.session.SessionManagementFilter@308d4981, org.springframework.security.web.access.ExceptionTranslationFilter@66e62e19, org.springframework.security.web.access.intercept.AuthorizationFilter@6164b3a2]
+2022-06-29 17:21:33.697 [main] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2022-06-29 17:21:33.718 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+2022-06-29 17:21:33.739 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+2022-06-29 17:21:33.752 [main] INFO  com.youkongyi.mall.MallApplication - Started MallApplication in 4.573 seconds (JVM running for 6.363)
+2022-06-29 17:21:39.322 [http-nio-80-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-29 17:21:39.322 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-29 17:21:39.324 [http-nio-80-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms

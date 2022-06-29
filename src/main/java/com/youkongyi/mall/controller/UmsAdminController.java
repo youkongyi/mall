@@ -1,12 +1,18 @@
 package com.youkongyi.mall.controller;
 
-import com.google.gson.JsonObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.youkongyi.mall.common.emum.ResultCode;
 import com.youkongyi.mall.common.util.ReturnDTO;
+import com.youkongyi.mall.dto.AccessToken;
 import com.youkongyi.mall.dto.UmsAdminLoginParam;
-import com.youkongyi.mall.model.PmsBrand;
 import com.youkongyi.mall.model.UmsAdmin;
 import com.youkongyi.mall.service.IUmsAdminService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -14,21 +20,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
 @RequestMapping("/admin")
 @Tag(name = "用户管理", description = "后台用户管理")
 public class UmsAdminController {
-
-    @Value("${jwt.tokenHead}")
-    private String tokenHead;
 
     private IUmsAdminService adminService;
 
@@ -85,7 +82,7 @@ public class UmsAdminController {
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = UmsAdminLoginParam.class)))
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "操作成功",
-                    content = @Content( mediaType = "application/json",schema = @Schema(implementation = Boolean.class))
+                    content = @Content( mediaType = "application/json",schema = @Schema(implementation = AccessToken.class))
             )
             ,@ApiResponse(responseCode = "400", description = "参数检验失败",
                     content = @Content(mediaType = "application/json",schema = @Schema(implementation = String.class))
@@ -95,16 +92,10 @@ public class UmsAdminController {
             )
     })
     @PostMapping("/login")
-    public ReturnDTO<String> login(@RequestBody UmsAdminLoginParam umsAdminLoginParam) {
-        ReturnDTO<String> ret = new ReturnDTO<>();
+    public ReturnDTO<AccessToken> login(@RequestBody UmsAdminLoginParam umsAdminLoginParam) {
+        ReturnDTO<AccessToken> ret = new ReturnDTO<>();
         try {
-             String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("token", token);
-            jsonObject.addProperty("tokenHead", tokenHead);
-            ret.setCode(ResultCode.SUCCESS.getCode());
-            ret.setMsg(ResultCode.SUCCESS.getMessage());
-            ret.setData(jsonObject.toString());
+             return adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         } catch (Exception e){
             log.error("登录失败: ", e);
             ret.setCode(ResultCode.FAILED.getCode());

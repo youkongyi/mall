@@ -4,20 +4,19 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.crypto.digest.DigestAlgorithm;
+import cn.hutool.crypto.digest.Digester;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import javax.crypto.SecretKey;
 
 /**
   * @description： JwtToken生成的工具类
@@ -34,13 +33,6 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    private RedisUtil redisUtil;
-
-    @Autowired
-    public void setRedisUtil(RedisUtil redisUtil) {
-        this.redisUtil = redisUtil;
-    }
-
     /**
       * @description： 生成token
       *     com.youkongyi.mall.util.JwtUtil.generateToken
@@ -51,16 +43,16 @@ public class JwtUtil {
       * @author： Aimer
       * @crateDate： 2022/06/28 10:59
       */
-    public String generateToken(String user){
+    public String generateToken(String user) {
         return Jwts.builder()
                 .setIssuer("youkongyi") // 签发者
                 .setSubject("mall") // 面向用户
                 .setAudience(user)// 接收者
-                .setExpiration(DateUtil.offsetMillisecond(DateUtil.date(), expiration)) // 设置过期时间
-//                .setNotBefore(DateUtil.date()) // 设置在此时间之后生效
                 .setIssuedAt(DateUtil.date())// 设置注册时间
+                .setNotBefore(DateUtil.date()) // 设置在此时间之后生效
+                .setExpiration(DateUtil.offsetMillisecond(DateUtil.date(), expiration)) // 设置过期时间
                 .setId(UUID.randomUUID().toString())// 唯一标识
-                .signWith(this.generateKeys())
+                .signWith(this.generateKeys(), SignatureAlgorithm.HS512)
                 .compact();
     }
 
@@ -72,14 +64,9 @@ public class JwtUtil {
       * @crateDate： 2022/06/28 11:11
       */
     private Key generateKeys(){
-        String str = redisUtil.get(secret, String.class);
-        if(StringUtils.isBlank(str)){
-            // 生成key
-            SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.ES512);
-            str = Encoders.BASE64.encode(key.getEncoded());
-            redisUtil.set(secret, str, TimeUnit.MILLISECONDS.toSeconds(expiration));
-        }
-        return Keys.hmacShaKeyFor(str.getBytes(StandardCharsets.UTF_8));
+        Digester sha = new Digester(DigestAlgorithm.SHA512);
+        String secretString = Encoders.BASE64.encode(sha.digest(secret));
+        return Keys.hmacShaKeyFor(secretString.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
@@ -118,6 +105,17 @@ public class JwtUtil {
     private boolean isTokenExpired(String token) {
         Date expiredDate = getExpiredDateFromToken(token);
         return expiredDate.before(new Date());
+    }
+
+    /**
+     * 验证token是否还有效
+     *
+     * @param token       客户端传入的token
+     * @param userDetails 从数据库中查询出来的用户信息
+     */
+    public boolean validateToken(String token, UserDetails userDetails) {
+        String username = getClaimsFromToken(token).getAudience();
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
 }

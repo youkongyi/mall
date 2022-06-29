@@ -73,9 +73,9 @@ ___
 >
 >3.会员登录注册编码实现
 >
->> 1.依据电话号码生成验证码信息
->
->> 2.依据电话号码验证相应验证码
+>> 1. 依据电话号码生成验证码信息
+>>
+>> 2. 依据电话号码验证相应验证码
 >
 >4.整合Redis作为缓存处理
 >
@@ -83,14 +83,12 @@ ___
 >
 >> 1. 重写RedisTemplate模板
 >> 1. 将template类型修改为<String, Object>键值对
->
->> 3. 设置Redis key(***hash***)序列化配置StringRedisSerializer
->
->> 4. 设置Redis value(***hash***)序列化配置Jackson2JsonRedisSerializer
->
->>    a. 用ObjectMapper进行转义
->
->>    b. 设置任何字段可见
+>> 1. 设置Redis key(***hash***)序列化配置StringRedisSerializer
+>> 1. 设置Redis value(***hash***)序列化配置Jackson2JsonRedisSerializer
+>>
+>> ​        a. 用ObjectMapper进行转义
+>>
+>> ​		b. 设置任何字段可见
 >
 >
 >
@@ -98,17 +96,17 @@ ___
 >
 >1.整合SpringSecurity权限认证和授权
 >
->> SpringSecurity整合笔记
->>
+>SpringSecurity整合笔记
+>
 >> 1. 实现获取登录用户信息接口
 >>
 >> 2. 配置AuthenticationManager认证管理器
 >>
 >> 3. 配置SecurityFilterChain过滤器
 >>
->>    a. 过滤器实现具体filter执行链过程
+>>    ​      a. 过滤器实现具体filter执行链过程
 >>
->> 4. 可选配置加密方式
+>> 4. 配置BCryptPasswordEncoder加密方式
 >>
 >> 5. 配置跨源访问(CORS)
 >
@@ -118,4 +116,39 @@ ___
 >> 2. 依据用户主键获取用户权限
 >> 3. 用户登录返回token
 >> 4. 用户信息注册
+>
+>JWT(JSON WEB TOKEN)学习笔记
+>
+> JWT标准7个申明
+>
+>1.  setIssuer()                    iss: 签发者
+>2. setSubject()                  sub: 面向用户
+>3. setAudience()               aud: 接收者
+>4. setIssuedAt()                iat(issued at): 签发时间
+>5. setExpiration()             exp(expires): 过期时间
+>6. setNotBefore()             nbf(not before)：不能被接收处理时间，在此之前不能被接收处理
+>7. setId()                            jti：JWT ID为web token提供唯一标识
+>
+>通过**signWith()** 设置签名方法
+>
+>
+>
+>2022-06-29
+>
+>SpringSecurity学习笔记
+>
+>> SecurityFilterChain过滤器
+>>
+>> 1. 关闭Session会话,使用JWT进行安全交互
+>>
+>> 2. 配置authorizeHttpRequests(http请求授权)制定放开URL路径
+>>
+>> 3. 在用户密码认证过滤器之前,添加JWT过滤器(继承OncePerRequestFilter[每次请求时只执行一次])
+>>
+>> 4. 添加exceptionHandling自定义异常处理
+>>
+>>    a. accessDeniedHandler(访问拒绝异常)
+>>
+>>    b. authenticationEntryPoint(身份验证失败异常)
+>
 

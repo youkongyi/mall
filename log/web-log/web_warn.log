@@ -1,0 +1,1 @@
+2022-06-29 17:09:30.155 [http-nio-80-exec-3] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.youkongyi.mall]' package. Please check your configuration.

@@ -116,3 +116,19 @@ ___
 >> 4. 添加exceptionHandling自定义异常处理
 >>> 1. accessDeniedHandler(访问拒绝异常)
 >>> 2. authenticationEntryPoint(身份验证失败异常)
+>>> 
+> 2022-07-14
+> 
+> 1. 搭建Docker - Elasticsearch(8.2.3)环境
+> 2. 搭建DOcker - Kibana 环境
+> 3. 学习Elasticsearch基础概念
+> 4. 学习Elasticsearch基础API使用
+> 5. 整合Elasticsearch 8.2.3 客户端(截至当前时间,Spring-Data整合的ES版本为7.17.3,无法使用)
+>> 1. 利用Common-Pool对象连接池进行管理ES链接
+>> 2. 添加ES索引、文档、查询工具类
+> 
+> 6. 实现商品搜索接口
+>> 1. 数据库商品信息导入ES
+>> 2. 从ES搜索商品信息
+>> 
+> 

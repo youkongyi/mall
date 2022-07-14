@@ -211,6 +211,7 @@
     <logger name="org.mybatis" level="INFO"/>
     <logger name="org.apache.zookeeper" level="INFO"/>
     <logger name="org.springframework.data.mongodb.core" level="INFO"/>
+    <logger name="org.springframework.data.elasticsearch.client.WIRE" level="trace"/>
     <logger name="com.dtflys.forest.logging" level="INFO">
         <appender-ref ref="FOREST_FILE"/>
     </logger>

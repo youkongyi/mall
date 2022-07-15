@@ -1,5 +1,6 @@
 package com.youkongyi.mall.service;
 
+import com.youkongyi.mall.common.util.ReturnDTO;
 import com.youkongyi.mall.nosql.elasticsearch.document.EsProduct;
 import org.springframework.data.domain.Page;
 
@@ -20,17 +21,17 @@ public interface IEsProductService {
     /**
      * 根据id删除商品
      */
-    void delete(Long id);
+    void delete(String id) throws Exception;
 
     /**
      * 根据id创建商品
      */
-    EsProduct create(Long id);
+    ReturnDTO<EsProduct> create(Long id) throws Exception;
 
     /**
      * 批量删除商品
      */
-    void delete(List<Long> ids);
+    void delete(List<String> ids) throws Exception;
 
     /**
      * 根据关键字搜索名称或者副标题

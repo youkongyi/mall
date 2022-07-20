@@ -131,4 +131,10 @@ ___
 >> 1. 数据库商品信息导入ES
 >> 2. 从ES搜索商品信息
 >> 
-> 
+> 2022-07-20
+>  
+> 学习 Elasticsearch 不同版本API
+> 1. 添加Elasticsearch 7.17.5 分支开发
+> 2. 整合过程中无法配置SpringBoot yml自动装配,否则无法使 ElasticsearchRepository 自动关键字转换为 Elasticsearch Query String
+> 3. 整合使用 Spring Data Elasticsearch 进行链接配置(RestClientConfig.java) 
+> 4. 修改商品搜索实现类,采用 Spring Data Elasticsearch API 进行重写.

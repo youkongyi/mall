@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -96,10 +97,10 @@ public class EsProductController {
                                          @RequestParam(required = false, defaultValue = "5") Integer pageSize) {
         PagerResult<EsProduct> returnDTO = new PagerResult<>();
         try {
-            List<EsProduct> esProductPage = productService.search(keyword, pageNum, pageSize);
+            Page<EsProduct> esProductPage = productService.search(keyword, pageNum, pageSize);
             returnDTO.setCode(ResultCode.SUCCESS.getCode());
             returnDTO.setMsg(ResultCode.SUCCESS.getMessage());
-            returnDTO.setRows(esProductPage);
+            returnDTO.setRows(esProductPage.toList());
         }catch (Exception e){
             log.error("Es查询商品信息异常: ", e);
             returnDTO.setCode(ResultCode.FAILED.getCode());

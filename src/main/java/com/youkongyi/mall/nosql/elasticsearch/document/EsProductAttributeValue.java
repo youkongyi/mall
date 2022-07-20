@@ -2,6 +2,8 @@ package com.youkongyi.mall.nosql.elasticsearch.document;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
 
@@ -19,10 +21,12 @@ public class EsProductAttributeValue implements Serializable {
 
     private Long id;
 
+    @Field(type = FieldType.Keyword)
     private Long productAttributeId;
 
     private String value;
 
+    @Field(type = FieldType.Keyword)
     private Integer type;
 
     private String name;

@@ -34,9 +34,7 @@
         <!-- JWT(JSON WEB TOKEN) -->
         <jwt.version>0.11.5</jwt.version>
         <!-- 搜索引擎 -->
-        <elasticsearch.version>8.2.3</elasticsearch.version>
-        <!-- json-lib类库 -->
-        <jakarta-json.version>2.0.1</jakarta-json.version>
+        <elasticsearch.version>7.17.5</elasticsearch.version>
         <!-- 对象连接池 -->
         <commons-pool2.version>2.11.1</commons-pool2.version>
     </properties>
@@ -75,20 +73,20 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <!--Elasticsearch相关依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
 <!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
+<!--            <groupId>co.elastic.clients</groupId>-->
+<!--            <artifactId>elasticsearch-java</artifactId>-->
+<!--            <version>${elasticsearch.version}</version>-->
 <!--        </dependency>-->
-        <dependency>
-            <groupId>co.elastic.clients</groupId>
-            <artifactId>elasticsearch-java</artifactId>
-            <version>${elasticsearch.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.json</artifactId>
-            <version>${jakarta-json.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.glassfish</groupId>-->
+<!--            <artifactId>jakarta.json</artifactId>-->
+<!--            <version>${jakarta-json.version}</version>-->
+<!--        </dependency>-->
         <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>

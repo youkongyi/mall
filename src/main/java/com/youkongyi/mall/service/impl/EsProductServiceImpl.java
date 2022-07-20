@@ -1,20 +1,21 @@
 package com.youkongyi.mall.service.impl;
 
-import co.elastic.clients.elasticsearch._types.SortOrder;
-import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import com.youkongyi.mall.common.emum.ResultCode;
 import com.youkongyi.mall.common.util.ReturnDTO;
 import com.youkongyi.mall.mapper.EsProductMapper;
 import com.youkongyi.mall.nosql.elasticsearch.document.EsProduct;
-import com.youkongyi.mall.nosql.elasticsearch.util.EsConstant;
-import com.youkongyi.mall.nosql.elasticsearch.util.EsDocumentUtil;
-import com.youkongyi.mall.nosql.elasticsearch.util.EsQueryUtil;
+import com.youkongyi.mall.nosql.elasticsearch.repository.EsProductRepository;
 import com.youkongyi.mall.service.IEsProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -29,22 +30,31 @@ public class EsProductServiceImpl implements IEsProductService {
 
     private final EsProductMapper productMapper;
 
+    private final EsProductRepository productRepository;
+
     @Autowired
-    public EsProductServiceImpl(EsProductMapper productMapper) {
+    public EsProductServiceImpl(EsProductMapper productMapper, EsProductRepository productRepository) {
         this.productMapper = productMapper;
+        this.productRepository = productRepository;
     }
 
 
     @Override
     public int importAll() throws Exception {
         List<EsProduct> esProductList = productMapper.getAllEsProductList(null);
-        List<BulkResponseItem> res = EsDocumentUtil.bulkInsert(EsConstant.INDEX_NAME_PMS, esProductList);
-        return res.size();
+        Iterable<EsProduct> esProductIterable = productRepository.saveAll(esProductList);
+        Iterator<EsProduct> iterator = esProductIterable.iterator();
+        int result = 0;
+        while (iterator.hasNext()) {
+            result++;
+            iterator.next();
+        }
+        return result;
     }
 
     @Override
     public void delete(String id) throws Exception {
-        EsDocumentUtil.deleteByQuery(EsConstant.INDEX_NAME_PMS, "id", id);
+        productRepository.deleteById(Long.parseLong(id));
     }
 
     @Override
@@ -53,22 +63,30 @@ public class EsProductServiceImpl implements IEsProductService {
         List<EsProduct> esProductList = productMapper.getAllEsProductList(id);
         if (esProductList.size() > 0) {
             EsProduct esProduct = esProductList.get(0);
-            EsDocumentUtil.createDocument(EsConstant.INDEX_NAME_PMS, esProduct);
+            EsProduct result = productRepository.save(esProduct);
             returnDTO.setCode(ResultCode.SUCCESS.getCode());
             returnDTO.setMsg(ResultCode.SUCCESS.getMessage());
-            returnDTO.setData(esProduct);
+            returnDTO.setData(result);
         }
         return returnDTO;
     }
 
     @Override
     public void delete(List<String> ids) throws Exception {
-        EsDocumentUtil.delDocByIds(EsConstant.INDEX_NAME_PMS, ids.toArray(new String[0]));
+        if (!CollectionUtils.isEmpty(ids)) {
+            List<EsProduct> esProductList = new ArrayList<>();
+            for (String id : ids) {
+                EsProduct esProduct = new EsProduct();
+                esProduct.setId(Long.valueOf(id));
+                esProductList.add(esProduct);
+            }
+            productRepository.deleteAll(esProductList);
+        }
     }
 
     @Override
-    public List<EsProduct> search(String keyword, Integer pageNum, Integer pageSize) throws Exception {
-        int from = (pageNum-1) * pageSize +1;
-        return EsQueryUtil.queryMultiMatch(EsConstant.INDEX_NAME_PMS, Arrays.asList("name", "subTitle"), keyword, "id", SortOrder.Desc, from, pageSize, EsProduct.class);
+    public Page<EsProduct> search(String keyword, Integer pageNum, Integer pageSize) throws Exception {
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        return productRepository.findByNameOrSubTitleOrKeywords(keyword, keyword, keyword, pageable);
     }
 }

@@ -36,5 +36,5 @@ public interface IEsProductService {
     /**
      * 根据关键字搜索名称或者副标题
      */
-    List<EsProduct> search(String keyword, Integer pageNum, Integer pageSize) throws Exception;
+    Page<EsProduct> search(String keyword, Integer pageNum, Integer pageSize) throws Exception;
 }

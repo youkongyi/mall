@@ -136,3 +136,10 @@ ___
 > 学习 Elasticsearch 不同版本API
 > 1. 添加Elasticsearch 7.17.5 分支开发
 > 2. 修改商品搜索实现类,采用 Spring Data Elasticsearch API 进行重写.
+> 
+> 2022-07-25
+> 
+> 1. 整合MongoDB文档数据存储
+> 2. 整合RabbitMQ消息队列
+> 3. 整合阿里云OSS文件上传
+> 4. 整合jasypt进行配置文件的加密操作

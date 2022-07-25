@@ -215,6 +215,7 @@
     <logger name="com.dtflys.forest.logging" level="INFO">
         <appender-ref ref="FOREST_FILE"/>
     </logger>
+    <logger name="org.springframework.data.convert.CustomConversions" level="ERROR"/>
 
     <!-- 4. 最终的策略 -->
     <!-- 4.1 开发环境:打印控制台-->

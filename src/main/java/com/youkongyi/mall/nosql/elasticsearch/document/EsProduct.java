@@ -20,7 +20,7 @@ import java.util.List;
   */
 @Getter
 @Setter
-@Document(indexName = "pms")
+@Document(indexName = "pms",createIndex = false)
 @Setting(replicas = 0)
 public class EsProduct implements Serializable {
 

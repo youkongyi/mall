@@ -81,6 +81,7 @@ public class SecurityConfig {
                                         "/v2/api-docs/**",
                                         "/*.ico",
                                         "/*.html",
+                                        "/admin/register",
                                         "/admin/login")
                                 .permitAll()
                                 .anyRequest()

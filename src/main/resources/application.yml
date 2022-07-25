@@ -24,6 +24,23 @@ spring:
   #es搜索引擎
   elasticsearch:
     uris: http://192.168.31.195:9200
+    username: elastic
+    password: P@ssw0rd
+  data:
+    # Mongodb文档数据库
+    mongodb:
+      host: 192.168.31.195
+      port: 27017
+      database: mall
+      username: mall
+      password: P@ssw0rd
+  # RabbitMQ队列
+  rabbitmq:
+    host: 192.168.31.195
+    port: 5672
+    username: mall
+    password: mall
+    virtual-host: /mall
 #mybatis配置信息
 mybatis:
   mapper-locations:
@@ -51,3 +68,16 @@ jwt:
   secret: youkongyi-mall-secret #JWT加解密使用的密钥
   expiration: 604800000  #JWT的超期限时间(毫秒)
   tokenHead: 'Bearer ' #JWT负载中拿到开头
+# 阿里云OSS对象存储相关配置信息
+aliyun:
+  oss:
+    endpoint: oss-cn-shanghai.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId: ENC(n2yKC9osCgVeyON1qHpEbvzzOWrx5Ai0H4+w/r9VDytCNh8pIxcdZTpeddqGJIGR) # 访问身份验证标识
+    accessKeySecret: ENC(IjIfrPThQR4UrUKNIJ5YnLVs81Usy1gF+qwaNv+2wgENqakvKIQQVwg8EvAL+Ux7) # 访问身份验证密钥
+    bucketName: mall-aimer # oss的存储空间
+    policy:
+      expire: 300 # 签名有效期(S)
+    maxSize: 10 # 上传文件大小(M)
+    callback: http://localhost:8080/aliyun/oss/callback # 文件上传成功后的回调地址
+    dir:
+      prefix: mall/images/ # 上传文件夹路径前缀

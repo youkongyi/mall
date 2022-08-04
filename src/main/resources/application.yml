@@ -5,12 +5,12 @@ spring:
     active: dev #部署环境 prod:生产环境(不打印sql) dev:开发环境(打印sql)
   #数据源
   datasource:
-    url: jdbc:mysql://192.168.31.111:1311/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.0.109:1311/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: P@ssw0rd
   #缓存
   redis:
-    host: 192.168.31.111
+    host: 192.168.0.109
     port: 2312
     database: 0
     password: e593813e7d4c729da37e5e41fe760b0e
@@ -23,20 +23,20 @@ spring:
         min-idle: 0    #连接池中的最小空闲连接
   #es搜索引擎
   elasticsearch:
-    uris: http://192.168.31.111:1512
+    uris: http://192.168.0.109:1512
     username: elastic
     password: P@ssw0rd
   data:
     # Mongodb文档数据库
     mongodb:
-      host: 192.168.31.111
+      host: 192.168.0.109
       port: 17270
       database: mall
       username: mall
       password: P@ssw0rd
   # RabbitMQ队列
   rabbitmq:
-    host: 192.168.31.111
+    host: 192.168.0.109
     port: 2131
     username: mall
     password: mall

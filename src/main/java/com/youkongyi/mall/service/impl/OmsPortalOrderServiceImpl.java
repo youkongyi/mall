@@ -8,6 +8,7 @@ import com.youkongyi.mall.service.IOmsPortalOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
   * @description： 前台订单管理Service
@@ -35,6 +36,7 @@ public class OmsPortalOrderServiceImpl implements IOmsPortalOrderService {
       * @crateDate： 2022/7/25 18:02
       */
     @Override
+    @Transactional()
     public ReturnDTO<String> generateOrder(OrderParam orderParam) {
         ReturnDTO<String> returnDTO = new ReturnDTO<>();
         log.info("process generateOrder");

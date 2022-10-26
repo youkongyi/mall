@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.youkongyi.mall.common.emum.ResultCode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
@@ -20,13 +21,16 @@ import com.youkongyi.mall.common.util.ReturnDTO;
   */
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
+    @Value("${server.servlet.context-path}")
+    private String contextPath;
+
     @Override
     public void commence(HttpServletRequest httpServletRequest,
                          HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException {
 
-        if("/".equals(httpServletRequest.getRequestURI())){
-            httpServletRequest.getRequestDispatcher("/doc.html").forward(httpServletRequest,httpServletResponse);
+        if(contextPath.equals(httpServletRequest.getRequestURI())){
+            httpServletRequest.getRequestDispatcher("doc.html").forward(httpServletRequest,httpServletResponse);
             return;
         }
         httpServletResponse.setCharacterEncoding("UTF-8");

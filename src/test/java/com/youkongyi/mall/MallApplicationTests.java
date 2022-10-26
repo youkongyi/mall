@@ -28,7 +28,13 @@ import org.springframework.data.elasticsearch.core.query.UpdateQuery;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @SpringBootTest(classes = {MallApplication.class})
@@ -182,5 +188,95 @@ public class MallApplicationTests {
         String m = encryptor.decrypt(j);
         System.out.println(j);
         System.out.println(m);
+    }
+
+    @Test
+    public void waite() throws InterruptedException {
+
+        Object obj = new Object();
+        synchronized (obj){
+            while (true){
+                System.out.println("start");
+                obj.wait(2000);
+                obj.notify();
+                System.out.println("end");
+                if(1 == 1){
+                    break;
+                }
+            }
+        }
+        System.out.println("hell");
+    }
+
+    @Test
+    public void maptest() throws Exception {
+
+        Map<Integer,Integer> map = new HashMap<>(2);
+
+        //获取HashMap整个类
+        Class<?> mapType = map.getClass();
+        //获取指定属性，也可以调用getDeclaredFields()方法获取属性数组
+        Field threshold =  mapType.getDeclaredField("threshold");
+        //将目标属性设置为可以访问
+        threshold.setAccessible(true);
+        //获取指定方法，因为HashMap没有容量这个属性，但是capacity方法会返回容量值
+        Method capacity = mapType.getDeclaredMethod("capacity");
+        //设置目标方法为可访问
+        capacity.setAccessible(true);
+        //打印刚初始化的HashMap的容量、阈值和元素数量
+        System.out.println("容量："+capacity.invoke(map)+"    阈值："+threshold.get(map)+"    元素数量："+map.size());
+        for (int i = 0;i<25;i++){
+            map.put(i,i);
+            //动态监测HashMap的容量、阈值和元素数量
+            System.out.println("容量："+capacity.invoke(map)+"    阈值："+threshold.get(map)+"    元素数量："+map.size());
+        }
+    }
+
+    @Test
+    public void listtest() throws Exception {
+        List<Integer> list = new ArrayList<>(26);
+        list.add(1);
+        System.out.println(list.size());
+        System.out.println("1".length());
+        System.out.println(new Object[]{"1"}.length);
+        Class<?> mapType = list.getClass();
+        Field threshold =  mapType.getDeclaredField("elementData");
+        threshold.setAccessible(true);
+        System.out.println("容量："+ ((Object[]) threshold.get(list)).length+ "元素数量: "  + list.size());
+        for (int i = 0;i<25;i++){
+            list.add(i);
+            System.out.println("容量："+ ((Object[]) threshold.get(list)).length + "元素数量: "  + list.size() );
+        }
+    }
+
+    @Test
+    public void test3(){
+        String str = "ACC";
+        this.test5(str);
+        System.out.println(str);
+    }
+
+    void test5(String str){
+        str += "aaa";
+    }
+
+
+    @Test
+    public void test5(){
+        int i=0;
+
+        if(i>1000){
+            System.out.println(1);
+        }
+
+        if(i<=1000 && i!=0){
+            System.out.println(2);
+        }
+
+        if (i==0){
+            System.out.println(3);
+        }
+
+
     }
 }

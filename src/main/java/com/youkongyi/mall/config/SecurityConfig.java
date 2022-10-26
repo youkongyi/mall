@@ -80,7 +80,8 @@ public class SecurityConfig {
                                         "/v3/api-docs/**",
                                         "/v2/api-docs/**",
                                         "/*.ico",
-                                        "/*.html",
+                                        "/doc.html",
+                                        "/actuator/**",
                                         "/admin/register",
                                         "/admin/login")
                                 .permitAll()

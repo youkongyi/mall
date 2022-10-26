@@ -1,5 +1,7 @@
 server:
   port: 80
+  servlet:
+    context-path: /mall/
 spring:
   profiles:
     active: dev #部署环境 prod:生产环境(不打印sql) dev:开发环境(打印sql)

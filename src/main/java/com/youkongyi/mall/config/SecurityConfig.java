@@ -72,7 +72,7 @@ public class SecurityConfig {
                 .csrf().disable()//关闭csrf
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//关闭session
                 .and()
-                .cors().configurationSource(this.corsConfigurationSource())
+                .cors().configurationSource(this.corsConfigurationSource())// 解决跨域
                 .and()
                 .authorizeHttpRequests(auth ->
                         auth.mvcMatchers("/resources/**",

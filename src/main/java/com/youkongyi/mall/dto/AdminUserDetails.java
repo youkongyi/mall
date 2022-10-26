@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +20,8 @@ import com.youkongyi.mall.model.UmsPermission;
   * @author： Aimer
   * @crateDate： 2022/06/28 11:40
   */
+@Setter
+@Getter
 public class AdminUserDetails implements UserDetails {
 
     private final UmsAdmin umsAdmin;

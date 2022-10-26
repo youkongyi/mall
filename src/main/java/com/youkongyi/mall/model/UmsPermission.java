@@ -44,7 +44,7 @@ public class UmsPermission {
 
     @Schema(description = "创建时间")
     @Entity.Column("create_time")
-    private String create_time;
+    private String createTime;
 
     @Schema(description = "排序")
     @Entity.Column

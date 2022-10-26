@@ -23,4 +23,21 @@
         WHERE pr.type = 1
           AND pr.admin_id = #{adminId}
     </select>
+
+    <select id="getRoleList" resultType="com.youkongyi.mall.model.UmsRole">
+        SELECT
+            t2.id,
+            t2.`name`,
+            t2.description,
+            t2.admin_count as adminCount,
+            t2.create_time as createTime,
+            t2.`status`,
+            t2.sort
+        FROM
+            ums_admin_role_relation  t
+        INNER JOIN ums_role  t2
+           ON t.role_id = t2.id
+        WHERE
+            t.admin_id = #{adminId}
+    </select>
 </mapper>

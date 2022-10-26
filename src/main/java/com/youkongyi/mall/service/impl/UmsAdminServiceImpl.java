@@ -3,6 +3,7 @@ package com.youkongyi.mall.service.impl;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.youkongyi.mall.model.UmsRole;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -82,7 +83,7 @@ public class UmsAdminServiceImpl implements IUmsAdminService {
         List<UmsAdmin> adminList = adminMapper.selectByExample(example);
         if (adminList != null && adminList.size() > 0) {
             UmsAdmin admin = adminList.get(0);
-            List<UmsPermission> permissionList = this.getPermissionList(Long.parseLong(admin.getId()));
+            List<UmsPermission> permissionList = this.getPermissionList(admin.getId());
             return new AdminUserDetails(admin, permissionList);
         }
         throw new UsernameNotFoundException("用户名或密码错误");
@@ -143,5 +144,10 @@ public class UmsAdminServiceImpl implements IUmsAdminService {
         ret.setMsg(ResultCode.SUCCESS.getMessage());
         ret.setData(umsAdmin);
         return ret;
+    }
+
+    @Override
+    public List<UmsRole> getRoleList(Long adminId) {
+        return umsAdminRoleRelationMapper.getRoleList(adminId);
     }
 }

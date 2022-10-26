@@ -12,7 +12,7 @@ public class UmsAdmin {
 
     @Schema(description = "主键",hidden = true)
     @Entity.Column(id = true)
-    private String id;
+    private Long id;
 
     @Schema(description = "用户名")
     @Entity.Column

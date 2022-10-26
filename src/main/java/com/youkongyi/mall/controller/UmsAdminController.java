@@ -1,18 +1,16 @@
 package com.youkongyi.mall.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.youkongyi.mall.common.emum.ResultCode;
 import com.youkongyi.mall.common.util.ReturnDTO;
 import com.youkongyi.mall.dto.AccessToken;
+import com.youkongyi.mall.dto.AdminUserDetails;
 import com.youkongyi.mall.dto.UmsAdminLoginParam;
 import com.youkongyi.mall.model.UmsAdmin;
+import com.youkongyi.mall.model.UmsRole;
 import com.youkongyi.mall.service.IUmsAdminService;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,6 +18,16 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -97,6 +105,41 @@ public class UmsAdminController {
         try {
              return adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         } catch (Exception e){
+            log.error("登录失败: ", e);
+            ret.setCode(ResultCode.FAILED.getCode());
+            ret.setMsg(ResultCode.FAILED.getMessage());
+        }
+        return ret;
+    }
+
+
+    @GetMapping("/info")
+    public ReturnDTO<JSONObject> info(Principal principal){
+        ReturnDTO<JSONObject> ret = new ReturnDTO<>();
+        if (principal == null){
+            log.error("暂未登录或token已经过期");
+            ret.setCode(ResultCode.UNAUTHORIZED.getCode());
+            ret.setMsg(ResultCode.UNAUTHORIZED.getMessage());
+            return ret;
+        }
+        try {
+            String username = principal.getName();
+            AdminUserDetails umsAdmin = adminService.getAdminByUsername(username);
+            UmsAdmin admin = umsAdmin.getUmsAdmin();
+            JSONObject json = JSONUtil.createObj();
+            json.set("username", umsAdmin.getUsername());
+            json.set("menus", umsAdmin.getPermissionList());
+            json.set("icon", admin.getIcon());
+
+            List<UmsRole> roleList = adminService.getRoleList(admin.getId());
+            if(CollUtil.isNotEmpty(roleList)){
+                List<String> roles = roleList.stream().map(UmsRole::getName).collect(Collectors.toList());
+                json.set("roles",roles);
+            }
+            ret.setCode(ResultCode.SUCCESS.getCode());
+            ret.setMsg(ResultCode.SUCCESS.getMessage());
+            ret.setData(json);
+        }catch (Exception e){
             log.error("登录失败: ", e);
             ret.setCode(ResultCode.FAILED.getCode());
             ret.setMsg(ResultCode.FAILED.getMessage());

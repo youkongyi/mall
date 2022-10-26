@@ -7,6 +7,7 @@ import com.youkongyi.mall.dto.AccessToken;
 import com.youkongyi.mall.dto.AdminUserDetails;
 import com.youkongyi.mall.model.UmsAdmin;
 import com.youkongyi.mall.model.UmsPermission;
+import com.youkongyi.mall.model.UmsRole;
 
 public interface IUmsAdminService {
 
@@ -17,4 +18,6 @@ public interface IUmsAdminService {
     ReturnDTO<AccessToken> login(String username, String password);
 
     ReturnDTO<UmsAdmin> register(UmsAdmin umsAdmin);
+
+    List<UmsRole> getRoleList(Long adminId);
 }

@@ -1,7 +1,10 @@
 package com.youkongyi.mall.config;
 
+import com.youkongyi.mall.component.JwtAuthenticationTokenFilter;
 import com.youkongyi.mall.component.RestAuthenticationEntryPoint;
 import com.youkongyi.mall.component.RestfulAccessDeniedHandler;
+import com.youkongyi.mall.dto.AdminUserDetails;
+import com.youkongyi.mall.service.IUmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,10 +22,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import com.youkongyi.mall.component.JwtAuthenticationTokenFilter;
-import com.youkongyi.mall.dto.AdminUserDetails;
-import com.youkongyi.mall.service.IUmsAdminService;
 
 @Configuration
 public class SecurityConfig {
@@ -69,8 +68,11 @@ public class SecurityConfig {
       */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()//关闭csrf
+        return http
+                .csrf().disable()//关闭csrf
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)//关闭session
+                .and()
+                .cors().configurationSource(this.corsConfigurationSource())
                 .and()
                 .authorizeHttpRequests(auth ->
                         auth.mvcMatchers("/resources/**",
@@ -154,10 +156,18 @@ public class SecurityConfig {
       * @author： Aimer
       * @crateDate： 2022/06/28 14:34
       */
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource(){
+    private CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration config = new CorsConfiguration();
+        //允许所有域名进行跨域调用
+        config.addAllowedOriginPattern("*");
+        //允许跨越发送cookie
+        config.setAllowCredentials(true);
+        //放行全部原始头信息
+        config.addAllowedHeader("*");
+        //允许所有请求方法跨域调用
+        config.addAllowedMethod("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**",new CorsConfiguration().applyPermitDefaultValues());
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 

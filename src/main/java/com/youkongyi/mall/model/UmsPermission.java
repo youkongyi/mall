@@ -12,11 +12,15 @@ public class UmsPermission {
 
     @Schema(description = "主键")
     @Entity.Column(id = true)
-    private String id;
+    private Long id;
 
     @Schema(description = "父级权限编码")
     @Entity.Column
-    private String pid;
+    private Long pid;
+
+    @Schema(description = "标题")
+    @Entity.Column
+    private String title;
 
     @Schema(description = "名称")
     @Entity.Column
@@ -32,7 +36,7 @@ public class UmsPermission {
 
     @Schema(description = "权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）")
     @Entity.Column
-    private String type;
+    private Integer type;
 
     @Schema(description = "前端资源路径")
     @Entity.Column
@@ -40,7 +44,7 @@ public class UmsPermission {
 
     @Schema(description = "启用状态；0->禁用；1->启用")
     @Entity.Column
-    private String status;
+    private Integer status;
 
     @Schema(description = "创建时间")
     @Entity.Column("create_time")
@@ -48,5 +52,5 @@ public class UmsPermission {
 
     @Schema(description = "排序")
     @Entity.Column
-    private String sort;
+    private Integer sort;
 }

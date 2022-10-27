@@ -128,7 +128,10 @@ public class UmsAdminController {
             UmsAdmin admin = umsAdmin.getUmsAdmin();
             JSONObject json = JSONUtil.createObj();
             json.set("username", umsAdmin.getUsername());
-            json.set("menus", umsAdmin.getPermissionList());
+            json.set("menus", umsAdmin.getPermissionList()
+                    .stream()
+                    .filter(umsPermission -> umsPermission.getType()!=2) // 过滤2 按钮
+                    .collect(Collectors.toList()));
             json.set("icon", admin.getIcon());
 
             List<UmsRole> roleList = adminService.getRoleList(admin.getId());

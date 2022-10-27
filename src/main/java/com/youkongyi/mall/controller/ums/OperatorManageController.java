@@ -31,7 +31,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/admin")
-@Tag(name = "权限", description = "用户列表")
+@Tag(name = "操作员列表", description = "操作员列表")
 public class OperatorManageController {
 
     private final IOperatorManageService operatorManageService;

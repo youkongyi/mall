@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youkongyi.mall.mapper.UmsRoleMapper">
+    <!-- 根据操作员主键精确查询角色信息 -->
+    <select id="findRoleByAdminId" resultType="com.youkongyi.mall.model.UmsRole">
+        SELECT
+            t.id,
+            t.`name`,
+            t.description,
+            t.admin_count as adminCount,
+            t.create_time as createTime,
+            t.`status`,
+            t.sort
+        FROM
+            ums_role t
+        INNER JOIN
+            ums_admin_role_relation t2
+            ON t.id = t2.role_id
+        WHERE
+            t2.admin_id = #{adminId}
+    </select>
+</mapper>

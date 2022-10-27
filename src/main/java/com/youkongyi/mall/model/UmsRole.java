@@ -13,12 +13,12 @@ import lombok.Setter;
   */
 @Setter
 @Getter
-@Entity.Table
+@Entity.Table("ums_role")
 public class UmsRole {
 
     @Schema(description = "主键")
     @Entity.Column(id = true)
-    private Integer id;
+    private Long id;
 
     @Schema(description = "名称")
     @Entity.Column

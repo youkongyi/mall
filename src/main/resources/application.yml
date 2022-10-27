@@ -46,7 +46,7 @@ spring:
 #mybatis配置信息
 mybatis:
   mapper-locations:
-    - classpath:mapper/*.xml
+    - classpath:mapper/**/*Mapper.xml
 #系统监控
 management:
   endpoints:

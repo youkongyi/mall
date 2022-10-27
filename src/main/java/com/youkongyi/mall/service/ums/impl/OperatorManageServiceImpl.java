@@ -8,6 +8,7 @@ import com.youkongyi.mall.common.util.PagerResult;
 import com.youkongyi.mall.mapper.UmsAdminMapper;
 import com.youkongyi.mall.model.UmsAdmin;
 import com.youkongyi.mall.service.ums.IOperatorManageService;
+import com.youkongyi.mall.util.StringUtils;
 import io.mybatis.mapper.example.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +40,8 @@ public class OperatorManageServiceImpl implements IOperatorManageService {
         String keyword = String.valueOf(reqMap.get("keyword"));
         Pager pager = Convert.convert(Pager.class, reqMap);
         Example<UmsAdmin> example = adminMapper.example();
-        if(!"null".equals(keyword)){
-            example.createCriteria().andLike(UmsAdmin::getNickName, keyword);
-            example.or(example.createCriteria().andLike(UmsAdmin::getUsername, keyword));
+        if(StringUtils.isNotNull(keyword)){
+            example.createCriteria().andCondition(" INSTR(CONCAT(username, nick_name), '"+keyword+"') ");
         }
         PageHelper.startPage(pager);
         List<UmsAdmin> list = adminMapper.selectByExample(example);

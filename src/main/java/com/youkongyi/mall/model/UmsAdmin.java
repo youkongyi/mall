@@ -48,5 +48,5 @@ public class UmsAdmin {
 
     @Schema(description = "帐号启用状态：0->禁用；1->启用")
     @Entity.Column
-    private String status;
+    private Integer status;
 }

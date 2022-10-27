@@ -128,7 +128,7 @@ public class UmsAdminServiceImpl implements IUmsAdminService {
         UmsAdmin umsAdmin = new UmsAdmin();
         BeanUtils.copyProperties(umsAdminParam, umsAdmin);
         umsAdmin.setCreateTime(DateUtil.now());
-        umsAdmin.setStatus("1");
+        umsAdmin.setStatus(1);
         //查询是否有相同用户名的用户
         Example<UmsAdmin> example = new Example<>();
         example.createCriteria().andEqualTo(UmsAdmin::getUsername, umsAdmin.getUsername());
